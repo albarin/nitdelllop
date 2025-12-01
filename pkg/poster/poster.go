@@ -21,6 +21,7 @@ const (
 type Poster struct {
 	Title  string
 	Guest  string
+	Gender string
 	Date   time.Time
 	Time   string
 	PicURL string
@@ -36,6 +37,8 @@ func (w Webhook) Parse() Poster {
 			poster.Title = answer.Text
 		case "guest":
 			poster.Guest = answer.Text
+		case "gender":
+			poster.Gender = answer.Choice.Label
 		case "date":
 			date, _ := time.Parse("2006-01-02", answer.Date)
 			poster.Date = date
@@ -60,6 +63,10 @@ func (p Poster) When() string {
 }
 
 func (p Poster) Where() string {
+	if (p.Gender == "Mujer") {
+		dinnerValue = dinnerValue + "a"
+	}
+
 	types := map[string]string{
 		dinnerKey:       dinnerValue,
 		storytellingKey: storytellingValue,

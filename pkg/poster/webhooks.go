@@ -10,7 +10,7 @@ type FormResponse struct {
 
 type Answers struct {
 	Type   string  `json:"type"`
-	Number float32 `json:"number"`
+	Number float32  `json:"number"`
 	Text   string  `json:"text"`
 	Date   string  `json:"date"`
 	Choice Choice  `json:"choice"`
