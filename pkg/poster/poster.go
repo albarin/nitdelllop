@@ -63,12 +63,13 @@ func (p Poster) When() string {
 }
 
 func (p Poster) Where() string {
+	dinnerText := dinnerValue
 	if (p.Gender == "Mujer") {
-		dinnerValue = dinnerValue + "a"
+		dinnerText = dinnerText + "a"
 	}
 
 	types := map[string]string{
-		dinnerKey:       dinnerValue,
+		dinnerKey:       dinnerText,
 		storytellingKey: storytellingValue,
 	}
 
