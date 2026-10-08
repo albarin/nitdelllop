@@ -115,11 +115,24 @@ func isVowel(char string) bool {
 }
 
 func downloadFile(filepath string, url string) error {
-	resp, err := http.Get(url)
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		return err
+	}
+
+	if token := os.Getenv("TYPEFORM_TOKEN"); token != "" {
+		req.Header.Set("Authorization", "Bearer "+token)
+	}
+
+	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return err
 	}
 	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("could not download file: unexpected status %d", resp.StatusCode)
+	}
 
 	out, err := os.Create(filepath)
 	if err != nil {
