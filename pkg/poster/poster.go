@@ -66,7 +66,7 @@ func (p Poster) When() string {
 
 func (p Poster) MainTitle() string {
 	if p.Type == castanyadaKey {
-		return castanyadaKey
+		return "La Castanyada"
 	}
 
 	return "La nit del llop"
@@ -115,17 +115,7 @@ func isVowel(char string) bool {
 }
 
 func downloadFile(filepath string, url string) error {
-	req, err := http.NewRequest(http.MethodGet, url, nil)
-	if err != nil {
-		return err
-	}
-
-	if token := os.Getenv("TYPEFORM_TOKEN"); token != "" {
-		req.Header.Set("Authorization", "Bearer "+token)
-	}
-	req.Header.Set("User-Agent", "Mozilla/5.0 (compatible; nitdellop-poster/1.0)")
-
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := http.Get(url)
 	if err != nil {
 		return err
 	}
