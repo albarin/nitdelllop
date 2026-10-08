@@ -123,7 +123,7 @@ func drawText(ctx *gg.Context, poster Poster) error {
 
 	lines := []Line{
 		{
-			text:      "La nit del llop",
+			text:      poster.MainTitle(),
 			marginTop: 25,
 			fontSize:  90.0,
 			fontPath:  LobsterTwoBold,

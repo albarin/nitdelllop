@@ -64,6 +64,14 @@ func (p Poster) When() string {
 	return fmt.Sprintf("%s %s %s a les %s", dayName, dayNumber, monthName, p.Time)
 }
 
+func (p Poster) MainTitle() string {
+	if p.Type == castanyadaKey {
+		return castanyadaKey
+	}
+
+	return "La nit del llop"
+}
+
 func (p Poster) Where() string {
 	dinnerText := dinnerValue
 	if (p.Gender == "Mujer") {
