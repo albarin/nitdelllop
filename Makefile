@@ -8,6 +8,3 @@ build:
 run: build
 	PORT=3000 \
  	./bin/poster
-
-deploy:
-	git push heroku master -f
