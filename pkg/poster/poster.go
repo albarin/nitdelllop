@@ -16,6 +16,8 @@ const (
 	dinnerValue       = "sopar tertúlia amb l'autor"
 	storytellingKey   = "Cuentos"
 	storytellingValue = "copa de vi i montaditos"
+	castanyadaKey     = "Castanyada"
+	castanyadaValue   = "castanyes, panellets i moscatell"
 )
 
 type Poster struct {
@@ -71,6 +73,7 @@ func (p Poster) Where() string {
 	types := map[string]string{
 		dinnerKey:       dinnerText,
 		storytellingKey: storytellingValue,
+		castanyadaKey:   castanyadaValue,
 	}
 
 	return fmt.Sprintf("a l'Orfeó Catalònia, %s", types[p.Type])
