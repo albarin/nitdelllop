@@ -97,7 +97,7 @@ func drawPicture(ctx *gg.Context, poster Poster) error {
 
 	pic, err := gg.LoadImage(filepath)
 	if err != nil {
-		return err
+		return fmt.Errorf("could not load picture from %s: %w", poster.PicURL, err)
 	}
 
 	resizedPic := resize.Thumbnail(

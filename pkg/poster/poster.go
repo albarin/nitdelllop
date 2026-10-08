@@ -131,7 +131,11 @@ func downloadFile(filepath string, url string) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("could not download file: unexpected status %d", resp.StatusCode)
+		return fmt.Errorf("could not download %s: unexpected status %d", url, resp.StatusCode)
+	}
+
+	if contentType := resp.Header.Get("Content-Type"); !strings.HasPrefix(contentType, "image/") {
+		return fmt.Errorf("could not download %s: unexpected content type %q", url, contentType)
 	}
 
 	out, err := os.Create(filepath)
