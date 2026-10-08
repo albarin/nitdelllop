@@ -123,6 +123,7 @@ func downloadFile(filepath string, url string) error {
 	if token := os.Getenv("TYPEFORM_TOKEN"); token != "" {
 		req.Header.Set("Authorization", "Bearer "+token)
 	}
+	req.Header.Set("User-Agent", "Mozilla/5.0 (compatible; nitdellop-poster/1.0)")
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
